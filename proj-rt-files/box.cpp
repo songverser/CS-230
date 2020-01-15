@@ -5,6 +5,8 @@
 bool Box::Intersection(const Ray& ray) const
 {
     TODO;
+    // r x s = n
+    
     return true;
 }
 

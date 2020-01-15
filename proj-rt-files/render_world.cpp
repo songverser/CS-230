@@ -23,7 +23,7 @@ Render_World::~Render_World()
 Hit Render_World::Closest_Intersection(const Ray& ray)
 {
     TODO;
-    
+
     return {};
 }
 
@@ -59,6 +59,7 @@ void Render_World::Initialize_Hierarchy()
 {
     TODO; // Fill in hierarchy.entries; there should be one entry for
     // each part of each object.
+    hierarchy.entries = ;
 
     hierarchy.Reorder_Entries();
     hierarchy.Build_Tree();
