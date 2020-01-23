@@ -67,6 +67,7 @@ void Parse(Render_World& world,int& width,int& height,const char* test_file)
             o->material_shader=sh->second;
             if(name=="-") world.objects.push_back(o);
             else objects[name]=o;
+            // new sphere: original radius material_shader
         }
         else if(item=="mesh")
         {

@@ -94,6 +94,7 @@ int main(int argc, char** argv)
     // Render the image
     world.Render();
 
+    std::cout<<"render finished"<<std::endl;
     // For debugging.  Render only the pixel specified on the commandline.
     // Useful for printing out information about a single pixel.
     if(test_x>=0 && test_y>=0)
