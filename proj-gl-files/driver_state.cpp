@@ -58,12 +58,12 @@ void render(driver_state& state, render_type type)
                 in[i]=new data_geometry;
                 in[i]->data = dv[i].data;
                 state.vertex_shader(dv[i], *in[i], state.uniform_data);
-                // std::cout<<in[i]->data[0]<<in[i]->data[1]<<std::endl;
             }
             for(int i=0;i<3;i++){
                 for(int j=0;j<3;j++){
                     in[i]->data[j] = in[i]->gl_Position[j]/in[i]->gl_Position[3];
                 }
+                // std::cout<<"points: "<<i<<" "<<in[i]->data[0]<<" "<<in[i]->data[1]<<" "<<in[i]->data[2]<<std::endl;
             }
             const data_geometry* in2[3] = {in[0],in[1],in[2]};
             rasterize_triangle(state, in2);
@@ -444,7 +444,10 @@ void rasterize_triangle(driver_state& state, const data_geometry* in[3])
             float depth = alpha*in[0]->data[2]+beta*in[1]->data[2]+gamma*in[2]->data[2];
             // df.data = new float[state.floats_per_vertex];
             // std::cout<<areab<<" "<<area1<<" "<<area2<<" "<<area3<<" "<<depth<<std::endl;
-            if(round((area1+area2+area3)*10000) == round(areab*10000)){
+            // if(alpha+beta+gamma!=1 && alpha+beta+gamma < 1.3){
+            //     std::cout<<alpha+beta+gamma<<std::endl;
+            // }
+            if(round((alpha+beta+gamma)*100)/100==1){
                 if(state.floats_per_vertex==3 || state.interp_rules[3]==interp_type::flat){
                     df.data[0]=(in[0]->data[3]);df.data[1]=(in[0]->data[4]);df.data[2]=(in[0]->data[5]);
                     state.fragment_shader(df, dataout[position], state.uniform_data);
